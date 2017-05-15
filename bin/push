@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#vim :set filetype=sh:
+
+cd "$(dirname $0)"; cd ..
+
+IMAGE_NAME=${IMAGE_NAME:-python-cuda}
+PUSH_IMAGE=${PUSH_IMAGE:-mikewright/python-cuda}
+
+bin/build
+
+result=$?
+if [[ $result != 0 ]]; then
+  echo "Failed to build image"
+  exit $result
+fi
+
+docker tag $IMAGE_NAME $PUSH_IMAGE
+docker push $PUSH_IMAGE
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#vim :set filetype=sh:
+
+cd "$(dirname $0)"; cd ..
+
+IMAGE_NAME=${IMAGE_NAME:-python-cuda}
+
+docker build -t $IMAGE_NAME .
+

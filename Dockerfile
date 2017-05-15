@@ -90,8 +90,72 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 ###############################
-## Install Python & PIP
+## Install Python 3
 ###############################
+
+## Install Web Requests
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		ca-certificates \
+		curl \
+		wget \
+	&& rm -rf /var/lib/apt/lists/*
+
+## Install SCM support
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		git \
+		openssh-client \
+		procps \
+	&& rm -rf /var/lib/apt/lists/*
+
+## Install the common libraries for python extensions
+RUN set -ex; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		autoconf \
+		automake \
+		bzip2 \
+		file \
+		g++ \
+		gcc \
+		imagemagick \
+		libbz2-dev \
+		libc6-dev \
+		libcurl4-openssl-dev \
+		libdb-dev \
+		libevent-dev \
+		libffi-dev \
+		libgdbm-dev \
+		libgeoip-dev \
+		libglib2.0-dev \
+		libjpeg-dev \
+		libkrb5-dev \
+		liblzma-dev \
+		libmagickcore-dev \
+		libmagickwand-dev \
+		libncurses-dev \
+		libpng-dev \
+		libpq-dev \
+		libreadline-dev \
+		libsqlite3-dev \
+		libssl-dev \
+		libtool \
+		libwebp-dev \
+		libxml2-dev \
+		libxslt-dev \
+		libyaml-dev \
+		make \
+		patch \
+		xz-utils \
+		zlib1g-dev \
+		$( \
+			if apt-cache show 'default-libmysqlclient-dev' 2>/dev/null | grep -q '^Version:'; then \
+				echo 'default-libmysqlclient-dev'; \
+			else \
+				echo 'libmysqlclient-dev'; \
+			fi \
+		) \
+	; \
+	rm -rf /var/lib/apt/lists/*
 
 ## Runtime Dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -144,6 +208,10 @@ RUN cd /usr/local/bin \
 	&& ln -s python3 python \
 	&& ln -s python3-config python-config
 
+
+###############################
+## Install PIP
+###############################
 ENV PYTHON_PIP_VERSION 9.0.1
 
 RUN set -ex; \
