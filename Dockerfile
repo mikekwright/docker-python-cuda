@@ -8,7 +8,7 @@ FROM ubuntu:16.04
 ###############################
 ## Install Nvidia Driver into the container
 ###############################
-ENV DRIVER_VERSION 367.57
+ENV DRIVER_VERSION 375.66
 
 RUN apt-get -y update \
     && apt-get -y install wget git bc make dpkg-dev libssl-dev module-init-tools \
