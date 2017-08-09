@@ -37,4 +37,7 @@ given where credit is due.
 [NVIDIA CUDA 8 Dockerfile](https://gitlab.com/nvidia/cuda/blob/ubuntu16.04/8.0/runtime/Dockerfile)  
 [Python 3.6.1 Dockerfile](https://github.com/docker-library/python/blob/cd1f11aa745a05ddf6329678d5b12a097084681b/3.6/Dockerfile)   
 
+## Docker Hub
+
+Has a built version found [here](https://hub.docker.com/r/resero/nvidia-python/)  
 
